@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 1.JavaScript值类型在内存中的存放情况
+		// 值类型分为原始类型和引用类型
+		// 原始类型包括：number, string, boolean, null, undefined
+		// 引用类型包括：Array， Object, Function, Date, RegExp
+		// 栈内存中存储原始类型的值。
+		// 堆内存中存储引用类型的值。
+
+		// 1.1 原始值类型和引用类型复制
+		// 引用类型的赋值操作是将引用类型堆上的内存地址进行了变更。
+
+		var a = 9, b;
+		var c = { age: 20}, d;
+
+		b = a;
+		b = 19;
+		console.log(a); // a => 9
+		console.log(b); // b => 19
+		
+		d = c;
+		d.age = 22;
+		console.log(c.age) // c.age => 22
+		console.log(d.age) // d.age => 22
+	</script>
+</body>
+</html>

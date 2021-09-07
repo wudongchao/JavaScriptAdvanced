@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 2.函数内，依然会按照原始类型和引用类型规则。
+		var a = 9, b = { name: 'Join' };
+
+		function demo (c1, c2) {
+			c1 = 29;
+			c2.name = 'Make';
+
+		};
+		demo (a, b);
+
+		// 2.1 函数的arguments参数详解
+		// arguments 获取参数
+		// max.length 函数形参的个数
+		// arguments.length 实参的个数
+		function arg () {
+			
+			Array.from(arguments).forEach(item => {
+				console.log(item)
+			});
+		};
+		arg(1, 10);
+		// 2.3 arguments获取最大值案例
+		function max () {
+			if (arguments.length <= 0) return;
+			var max = arguments[0];
+
+			Array.from(arguments).forEach((item) => {
+				if (typeof item === 'number') {
+					if (max < item) {
+						max = item;
+					}
+				} else {
+					alert('参数内有非数值！')
+				};
+			});
+			return max;
+		};
+		var max1 = max(1, 5, 10, 22, 19);
+
+		// 2.4 函数参数的封装
+		// 函数的参数很多
+		// 使用对象方式
+		var rectObj = {
+			x: 19,
+			y: 20,
+			width: 200,
+			height: 300,
+			bgColor: '#ccc',
+			text: 'Join'
+		};
+		function rect (rectObj) {
+			console.log(rectObj.x + rectObj.y);
+		};
+		rect (rectObj);
+
+	</script>
+</body>
+</html>
