@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 5.1 变量提升
+		// 如果一个声明的比那两在函数体内，那么它的作用域就是函数内部，如是在全局环境下声明的，那么它的作用域就是全局的，通过var声明的变量时无法用delete删除的。
+		// 函数内部的声明的变量会被提升到函数的头部。函数在解析执行的时候，先进行变量声明处理，然后再运行函数内部的代码。
+		// 变量和赋值语句一起书写，在JS引擎解析时，会将其拆成声明和赋值两部分，声明置顶，赋值保留在原来位置
+		// 变量重复声明不会出错，后main的会覆盖前面的。
+		
+		// 示例1
+		var a = 10;
+
+		function f1 () {
+			console.log(a); // undefined
+			var a = 20; 
+			console.log(a); // 20
+		};
+		f1();		
+		console.log(a); // 10
+
+		// 示例2
+		if(!("b" in window)){
+			var b = 1; // 虽然 "b" in window为true,而取非，所以不能进入条件，无法赋值 b = 1 
+			console.log(b); 
+		};
+		console.log(b); // undefined
+
+		// 示例3
+		console.log(c); // a是一个函数
+		var c = 20;
+		console.log(c); // a为20
+		function c (){};	
+
+		// 示例4
+		g();
+		console.log(d);
+		console.log(e);
+		console.log(f);
+
+		function g () {
+			var d = e = f =9;
+			console.log(d); // 9
+			console.log(e); // 9
+			console.log(f); // 9
+		};
+
+		// 示例5
+		h();
+		function h () {
+			for(var j = 0; j < 10; j++){
+				console.log(j) // 0-9
+			};
+			console.log(j); // 10
+		}
+
+
+		// 5.2作用域链
+		// 作用域链就是一个数组
+		// 作用域链是控制变量作用域的有序访问的JS内部实现
+		// 作用域链条存储在函数的执行上下文中，作用域链中存放的是执行环境中的GO和AO
+		// 当前函数的作用域对象都是在最前端，而且全局的在最末端
+		// 变量（标识符）的搜索都是从作用域链的最前端向后搜索，直到全局作用域，标识符的解析是沿着作用域链一级一级搜索的过程，从第一个对象开始，逐级向后回溯，直到找到同名标识符为止，找到后不再继续遍历，找不到就报错。
+
+		var k = 0,
+			l = 10;
+
+		var m = fParent (t, m);
+
+		console.log(m);
+
+		function fParent(a, b) {
+			var vParent = 'parent';
+
+			function fChild (c) {
+				var vChild = 'child';
+				return c + vChild;
+			}
+
+			return a + b + vParent + fChild(a);
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
