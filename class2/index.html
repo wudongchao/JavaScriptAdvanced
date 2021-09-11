@@ -22,7 +22,7 @@
 		function arg () {
 			
 			Array.from(arguments).forEach(item => {
-				console.log(item)
+				//console.log(item)
 			});
 		};
 		arg(1, 10);
@@ -42,8 +42,8 @@
 			});
 			return max;
 		};
-		var max1 = max(1, 5, 10, 22, 19);
-
+		var max1 = max(1, 5, 10, '22', 19);
+		console.log('max1', max1)
 		// 2.4 函数参数的封装
 		// 函数的参数很多
 		// 使用对象方式
@@ -56,7 +56,7 @@
 			text: 'Join'
 		};
 		function rect (rectObj) {
-			console.log(rectObj.x + rectObj.y);
+			//console.log(rectObj.x + rectObj.y);
 		};
 		rect (rectObj);
 

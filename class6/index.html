@@ -16,6 +16,16 @@
 		// 函数调用模式this指向全局对象
 		// function f(){}; f(); // 函数调用模式
 
+		function Cat () {
+			
+			var a = 10;
+			console.log('a' in window);
+
+			console.log(this)
+		};
+		Cat(); // 函数调用模式
+		//var cat = new Cat(); // 构造器调用模式
+
 		// 6.3 构造器调用模式
 		// 构造器调用模式就是构造函数调用。
 		// 构造器模式调用必须有关键字new存在
@@ -23,9 +33,13 @@
 		// var t = new T(); // 构造器调用模式
 		// 构造函数可以返回一个值，但如果是简单类型会被忽略，如果是引用类型会替代掉新创建的对象返回。
 
-		function Dog (dogName) {
-			
-		}
+		function Dog (dogName) {};
+		var d = new Dog();
+		// 创建一个空对象，并且返回这个空对象
+		// 把这个空对象的原型指向给构造函数的prototype属性
+		// 把这个空对象赋值给this
+		// 开始执行构造函数内部的代码
+
 
 		// 6.4 apply/call调用模式（借用方法模式）
 		// apply和call可以改变函数调用的内部this指向
@@ -34,6 +48,64 @@
 		// call第二个参数开始后面的都是传给函数的参数，可以有多个，用逗号隔开。
 		// apply 第二个参数是一个传给函数的参数数组
 		// 调用 function m (a) {}; m.call(window,2); m.apply(window,[2]);
+
+		function sum (a, b) {
+			console.log(this); // 用call改变this指向，指向t对象
+			return a + b;
+		};
+
+		sum (1, 2); // window
+
+		var t = {
+			name: 'slim'
+		};
+
+		var m = sum.call(t, 3, 4);
+		console.log(m);
+		var m2 = sum.apply(t, [5, 6]);
+		console.log(m2);
+
+
+		// 如果你传递的第一个参数是简单类型（值类型，原始类型），那么都会出现一些变化
+		// 1.如果传第一个参数是：null、undefined 。最终是window
+		// 2.如果是number、 string、 boolean转成对应的包装类型
+
+		sum.call(null, 7,8); // window
+		sum.call(undefined, 9, 10); // window
+		sum.call(3, 11, 12) // Number 包装类
+
+		// 案例1 构造函数
+
+		function Btn (width, height, x, y) {
+			this.width = width;
+			this.height = height;
+			this.x = x;
+			this.y = y;
+		};
+		var btn = new Btn (100, 100, 30, 30);
+
+		// 案例2 借用Math的min方法实现数组的最小值
+		var m = Math.min.apply(null, [2, 4, 8])
+		console.log(m);
+
+		// 案例3 把类数组转换成真实的数组
+		var t = {};
+		t[0] = 1;
+		t[1] = true;
+		t[2] = 'slim';
+		t.length = 3;
+
+		// slice(); //第一个参数是 截取开始的位置，第二个参数是 截取结束的位置+1;
+		var t1 = Array.prototype.slice.call(t, 0);
+		console.log(t1)
+
+
+
+
+
+
+
+
 
 
 	</script>
