@@ -6,6 +6,18 @@
 <body>
 	<script type="text/javascript">
 		// 7 数组的日常
+		// 声明一个数组
+		var arr  = [];
+		var arr = new Array(); // 项目中也许不使用（公司规范大多不让使用）
+		var arr = Array(); // 项目中不使用
+		
+		var array = new Array(1, 2, 4) // [1, 2, 4];
+		//var array = new Array(4.2) // 报错
+		//var array = new Array(1,,3)// 报错
+		var array = [,,,,,,] // [emtpy × 6] length为6 ，最后一个逗号的后面不算入数组内
+		var array = new Array(5); // 数组长度5;
+		var array = new Array('a') // ['a'];
+		//var array = new Array(a)// a is not undefined;
 		// 返回一个新数组必须有一个变量接收。	
 
 		// 7.1 Array.prototype.concat()
@@ -42,6 +54,26 @@
 		// 7.3 Array.prototype.filter()
 		// filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。 
 		// 
+
+
+		// 7.4 Array.prototype.push()
+		// push() 方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度。
+		// 语法: arr.push(element1, ..., elementN)
+		// 参数: elementN 被添加到数组末尾的元素。
+		// 返回值: 当调用该方法时，新的 length 属性值将被返回。
+		var length = [1, 2, 3, 4].push(5, 6, 7); // 数组长度
+		var arr10 = [1, 2, 3, 4]; 
+		arr10.push(5, 6, 7); // [1, 2, 3, 4, 5, 6, 7];
+
+		// 7.5 Array.prototype.unshift();
+		// unshift() 方法将一个或多个元素添加到数组的开头，并返回该数组的新长度(该方法修改原有数组)。
+		// 语法: arr.unshift(element1, ..., elementN)
+		// 参数: elementN 要添加到数组开头的元素或多个元素。
+		// 返回值: 当一个对象调用该方法时，返回其 length 属性值。
+		var length1 = [5, 6, 7].unshift(1, 2, 3, 4);
+		var arr11 = [5, 6, 7];
+		arr11.unshift(1, 2, 3, 4)
+		
 	</script>
 </body>
 </html>
