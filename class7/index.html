@@ -120,7 +120,111 @@
 
 		// 8.0 Array.prototype.sort()
 		// sort() 方法用原地算法对数组的元素进行排序，并返回数组。默认排序顺序是在将元素转换为字符串，然后比较它们的UTF-16代码单元值序列时构建的
-	
+		// 语法: arr.sort([compareFunction])
+		// 参数: compareFunction 可选用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。firstEl 第一个用于比较的元素。secondEl 第二个用于比较的元素。
+		// 返回值: 排序后的数组。请注意，数组已原地排序，并且不进行复制。
+		// sort按照 ascII码来排序
+		var arr17 = [ -1, -5, 8, 0, 2];
+		arr17.sort(); // [-5, -1, 0, 2, 8]
+		
+		var arr18 = [27, 49, 6, 8];
+		// sort参数 a, b。负值，a就拍在前面。正值，b就排在前面。
+		// 27  	49
+		// 6   	27
+		// 8	27
+		// sort(fuction (a, b) {
+			// if (a > b) {
+			// 	return 1;
+			// } else {
+			// 	return -1
+			// }
+		// });
+
+		arr18.sort(function(a, b){
+			return a - b;
+		});
+		
+		// 随机排序
+		var arr19 = [1, 2, 3, 4, 5];
+		arr19.sort(function(a, b){
+			// var random = Math.random();
+			// if (random - 0.5 > 0) {
+			// 	return 1;
+			// } else {
+			// 	return -1;
+			// }
+
+			return Math.random() - 0.5;
+		});
+		
+		// 数组对象
+		var arr20 = [
+			{
+				son: 'Jenny',
+				age: 18
+			},
+			{
+				son: 'Jenny',
+				age: 1
+			},
+			{
+				son: 'Jenny',
+				age: 20
+			},
+			{
+				son: 'Jenny',
+				age: 22
+			},
+			{
+				son: 'Jenny',
+				age: 10
+			},
+		];
+		arr20.sort(function(a, b) {
+			if (a.age > b.age){
+				return 1;
+			} else {
+				return -1
+			};
+		});
+
+		// 数组长度
+		var arr21 = ['12345', '1', '123', '098765'];
+		arr21.sort(function(a, b){
+			// if (a.length > b.length){
+			// 	return 1;
+			// }else {
+			// 	return -1;
+			// };
+
+			return a.length - b.length;
+		});
+
+		// 修改原数组 push pop unshift shift reverse splice sort
+
+		// 重写 push 数组原型方法
+		Array.prototype.myPush = function(){
+			for (var i = 0; i < arguments.length; i++){
+				this[this.length] = arguments[i];
+			}
+			return this.length;
+		};
+
+		var arr22 = [1, 2, 3];
+		arr22.myPush(4,6, 109);
+
+		// 重写 unshift 数组原型方法
+		Array.prototype.myShift = function () {
+			for (var i = 0; i < arguments.length; i++){
+				this.splice(0, 0, arguments[i]);
+			};
+
+			return this.length;
+		};
+
+		var arr23 = [3, 4, 5];
+		arr23.myShift(2, 1, 6);
+		
 	</script>
 </body>
 </html>
