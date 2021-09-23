@@ -202,7 +202,7 @@
 
 		// 修改原数组 push pop unshift shift reverse splice sort
 
-		// 重写 push 数组原型方法
+		// 8.1 重写 push 数组原型方法
 		Array.prototype.myPush = function(){
 			for (var i = 0; i < arguments.length; i++){
 				this[this.length] = arguments[i];
@@ -213,8 +213,8 @@
 		var arr22 = [1, 2, 3];
 		arr22.myPush(4,6, 109);
 
-		// 重写 unshift 数组原型方法
-		Array.prototype.myShift = function () {
+		// 8.2 重写 unshift 数组原型方法
+		Array.prototype.myUnShift = function () {
 			for (var i = 0; i < arguments.length; i++){
 				this.splice(0, 0, arguments[i]);
 			};
@@ -223,8 +223,10 @@
 		};
 
 		var arr23 = [3, 4, 5];
-		arr23.myShift(2, 1, 6);
+		arr23.myUnShift(2, 1, 6);
 		
+		// 8.3
+
 	</script>
 </body>
 </html>
