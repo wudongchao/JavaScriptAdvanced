@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 类数组
+		function test () {
+			console.log(arguments);
+		};
+		test(1, 2, 3);
+
+		// Array.prototype.slice.call(argument) // 参数变为数组的方法
+		var obj = {
+			'2': 3,
+			'3': 4,
+			'length': 2,
+			'splice': Array.prototype.splice,
+			'push': Array.prototype.push
+		};
+
+		obj.push(1);
+		obj.push(2);
+
+		// 重写unshift 方法
+		var arr  = ['d', 'e', 'f'];
+		Array.prototype.myUnshift1 = function () {
+			var arg = Array.prototype.slice.call(arguments);
+			var newArr = arg.concat(this);
+			return newArr;
+		};
+		var arr1 = arr.myUnshift1('a', 'b')
+
+		Array.prototype.myUnshift2 = function () {
+			var arg = Array.prototype.slice.call(arguments).reverse();
+			for (var i = 0; i < arg.length; i++) {
+				this.splice(0, 0, arg[i]);
+			};
+			return this;
+		};
+		var arr2 = arr.myUnshift1('a', 'b', 'c')
+
+		// 重写push方法
+		Array.prototype.myPush = function () {
+			var arg = Array.prototype.slice.call(arguments);
+			for (var i = 0; i < arg.length; i++) {
+				this[this.length] = arg[i];
+			};
+			return this;	
+		};
+
+
+		// 数组去重
+		var arr3 = [1, 1, 2, 4, 4, 5, 5, 6, 6];
+
+		//1 for循环
+		function unique (array) {
+			var _arr = [],
+				isRe;
+			for (var i = 0; i < array.length; i++) {
+				isRe = false;
+				for (var j = 0; j < _arr.length; j++) {
+					if (_arr[j] == array[i]) {	
+						isRe = true;
+						break;
+					}
+				};
+				if (!isRe) {
+					_arr.push(array[i])
+				}
+			};
+
+			return _arr;
+		};
+		var arr4 = unique (arr3);
+
+		//2 for 循环
+		function unique1 (array) {
+			var _arr = [],
+				isRe;
+			for (var i = 0; i < array.length; i++) {
+				isRe = false;
+				for (var j = i + 1; j < array.length; j++) {
+					if (array[i] === array[j]){
+						isRe = true;
+						break;
+					}
+				};
+
+				if (!isRe) {
+					_arr.push(array[i]);
+				};
+			};
+			return _arr;	
+		};
+		var arr5 = unique1 (arr3)
+
+		// 3 fliter
+		function unique2 (array) {
+			return array.filter(function (item, index) {
+				return array.indexOf(item) === index;
+			});
+		};
+
+		// 4 forEach
+		function unique3 (array) {
+			var _arr = [];
+
+			array.forEach( function(item) {
+				if(_arr.indexOf(item) !== -1) {
+					_arr.push(item)
+				}
+			});
+			return _arr;
+		};
+		var arr6 = unique3(arr3)
+
+		// 5 sort
+		function unique4 (array) {
+			var _arr = [];
+			array.sort();
+			for (var i = 0; i < array.length; i++) {
+				// 第一项
+				// if (array[i] !== array[i + 1]) {
+				// 	_arr.push(array[i]);
+				// }
+
+				// 第二项
+				if (array[i] !== _arr[_arr.length -1]) {
+					_arr.push(array[i])
+				}
+			};
+
+			return _arr;
+		};
+
+		var arr7 = unique4(arr3);
+		
+		// 6 includes
+		function unique5 (array) {
+			var _arr = [];
+			array.forEach( function(item, index) {
+				if (!_arr.includes(item)) {
+					_arr.push(item);
+				}
+			});
+			return _arr;
+		}
+
+		var arr8 = unique5 (arr3)
+
+		// 7 map
+		function unique6 (array) {
+			var _arr = [],
+				_temp = new Map();
+			for (var i = 0 ;i < array.length; i++) {
+				if (!_temp.get(array[i])){
+					_temp.set(array[i], 1);
+					_arr.push(array[i])
+				}
+			};
+
+			return _arr;
+		}
+
+		var arr9 = unique6 (arr3)
+
+		// 8 set
+		function unique7 (array) {
+			return Array.from(new Set(array));
+		}
+		var arr10 = unique7(arr3);
+
+
+		
+
+	</script>
+</body>
+</html>

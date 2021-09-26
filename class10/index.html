@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		//'use strict' // 严格模式
+		var a = 1;
+		var obj = {
+			a: 2
+		};
+		function  test () {
+			var a = 3;
+			with(test) { // window => 1 obj => 2 test || a => 3，严格模式下不允许使用whit，因为with会修改作用域。
+				// index.html:15 Uncaught SyntaxError: Strict mode code may not include a with statement
+				console.log(a)
+			}
+		};
+		test ();
+
+
+		var arg = 1; // 命名空间，在严格模式下会报错
+		var arg = 2;
+
+
+		arg = 3; // 报错，没有定义变量
+
+		var a1 = b1 = 3; //报错，严格模式下不允许从右到左多次赋值
+
+
+		function test1 () {
+			console.log(this); //严格模式下this会是undefined
+		}
+		test1();
+
+		function test2 (a, a) { // 严格模式下形参不允许重复
+			console.log(a);
+		};
+
+		test2(1, 2);
+
+
+		// 垃圾回收机制
+		// 1.找到内存中的变量
+		// 2.定时去清理变量（值）
+		// 3.回收的一定是局部变量，全局变量在关闭页面的时候，也就关闭了。
+
+		// 闭包解除 设为 null test4 = null
+		function test3 () {
+			var a = 10;
+			return function () {
+				a++;
+				console.log(a)
+			};
+
+		};
+
+		var test4 = test3();
+		test4();
+		test4();
+
+		// 垃圾回收机制 一般分为两种，第一种是标记清除，第二种是引用清除
+		// 1.标记清除，当进入函数后（一般清除的是局部变量），声明变量 则进入环境。执行完成后则离开环境，离开环境则清除局部变量
+		// 2.引用计数。当变量被引用一次时，这个变量的引用次数就加一，当引用这个变量的变量赋值为其他值时，则清除。如果是循环引用则把变量设值为null
+		
+
+
+
+	</script>
+</body>
+</html>
