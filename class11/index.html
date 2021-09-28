@@ -4,6 +4,68 @@
 	<title></title>
 </head>
 <body>
-	<script src="index.js"></script>
+	
+	<script type="text/javascript">
+		// 我们希望遍历的过程是可控的（遍历的过程可停止，也可继续），手动的控制遍历
+		// 迭代的过程
+		// 产品迭代 => 人为控制的产品升级与扩展 => manumal control
+		// 生成器 => 函数
+		// 迭代器 生成器函数执行后返回的一个队友next方法的对象
+		// 生成器对迭代的控制是有yield关键字来执行的
+
+		var arr = ['职业：程序员', '年龄： 32'];
+
+		function * test () {
+			yield '职业： 程序员';
+			yield '年龄： 32';
+			return '爱好：JavaScript'
+		}
+
+		const val =  test();
+
+		console.log(val.next());
+		console.log(val.next());
+		console.log(val.next());
+		
+
+		function * test1 (arr) {
+			for (var i = 0; i < arr.length; i++) {
+				yield arr[i];
+			};
+
+			return '爱好：JavaScript'
+		};
+
+		const val1 = test1 (arr);
+		console.log(val1.next());
+		console.log(val1.next());
+		console.log(val1.next());
+
+
+
+		function test2 (array) {
+			var link = 0
+
+			return {
+				next: function () {
+					return link > array.length ? 
+					{ value: array[link ++], done: false} : 
+					{ value: array[link ++], done: true }
+				}
+			}
+		};
+
+
+		const ts2 = test2 (arr)
+
+		console.log(ts2.next())
+		console.log(ts2.next())
+		console.log(ts2.next())
+		console.log(ts2.next())
+
+		
+		
+		
+	</script>
 </body>
 </html>
