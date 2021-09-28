@@ -10,4 +10,5 @@
 #### class8 数组的日常2
 #### class9 类数组与数组去重
 #### class10 严格模式和垃圾回收机制
-#### class11 生成器和迭代器
+#### class11 生成器和迭代器,entries
+#### class12 Array的内置对象

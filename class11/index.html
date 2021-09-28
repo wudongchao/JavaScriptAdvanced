@@ -6,6 +6,7 @@
 <body>
 	
 	<script type="text/javascript">
+		
 		// 我们希望遍历的过程是可控的（遍历的过程可停止，也可继续），手动的控制遍历
 		// 迭代的过程
 		// 产品迭代 => 人为控制的产品升级与扩展 => manumal control
@@ -64,7 +65,75 @@
 		console.log(ts2.next())
 
 		
+		// entries
+		// Array.prototype.entries();
+		// entries 会返回数组元素的下标和元素本身
+		// entries 比迭代器和生成器先进。entries直接挂在到了数组原型上。
+		const array = [1, 2, 3, 4, 5]
+
+		const it = array.entries();
+
+		console.log(it,'it')
+
+		for (var key of it) {
+			const [ i, v] = key;
+			console.log(i, v,'key')
+		}
 		
+		// 对象迭代 
+		// 类数组
+		// 继承数组的迭代器才能使用 forof 迭代
+		var o = {
+			0: 1,
+			1: 2,
+			2: 3,
+			length: 3,
+			[Symbol.iterator]: Array.prototype[Symbol.iterator] 
+		};
+
+		for (let v of o){
+			console.log(v)
+		}
+
+		// next 是如何运行的
+		const arr2 = [1, 2, 3, 4, 5, 6];
+		const it2 = arr2.entries();
+		var newArray = [];
+
+		for (var i = 0; i < arr2.length + 1; i++){
+			var item = it2.next();
+			
+			!item.done && (newArray[i] = item.value);
+		};
+		console.log(newArray)
+
+
+		const neArr = [
+			[56, 23],
+			[65, 32, 1, 100],
+			[123, 23, 21]
+		];
+
+		function sortArr (arr) {
+			var _it = arr.entries(),
+				_doNext = true;
+			while(_doNext) {
+				var _r = _it.next();
+				if (!_r.done) {
+					_r.value[1].sort(function (a, b) {
+						return a - b;
+					});
+					_doNext = true;
+				} else {
+					_doNext = false;
+				}
+				
+			};
+
+			return arr;	
+		};
+		console.log(sortArr (neArr))
+
 		
 	</script>
 </body>

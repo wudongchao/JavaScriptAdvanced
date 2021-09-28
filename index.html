@@ -5,7 +5,50 @@
 </head>
 <body>
 	<script type="text/javascript">
-	
+		// Array.prototype.entries()
+
+		var arr = ['姓名：武东超', '年龄：23', '职业：工程师'];
+		var _arr = [];
+		var arr1 = arr.entries();
+		for (var i = 0; i < arr.length; i++) {
+			const it = arr1.next();
+			!it.done && (_arr[i] = it['value'])
+		}
+
+		console.log(_arr, '_arr')
+
+
+		var arr1 = [
+			[12, 221, -3],
+			[23, 12, 11],
+			[93, 23, 12]
+		];
+		function test (arr) {
+			var _arr = arr.entries(),
+				_tar = true;
+
+			while(_tar)	{
+				var it = _arr.next();
+				if (!it.done) {
+					it.value[1].sort(function (a, b) {
+						return a - b;
+					})
+				} else {
+					_tar = false;
+				}
+			};
+
+			return arr;
+		}
+
+		var test11 = test (arr1);
+		console.log(test11)
+
+
+
+
+
+
 	</script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 12.1 Array.prototype.fill()
+		// fill() 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。
+		// 语法 arr.fill(value[, start[, end]])
+		// 参数 value 用来填充数组元素的值。 start可选。起始索引，默认值为0。end 可选终止索引，默认值为 this.length。
+		//返回值 修改后的数组。
+		var arr = [1, 2, 3].fill(4);         					// [4, 4, 4]
+		var arr1 = [1, 2, 3].fill(4, 1);      					// [1, 4, 4]
+		var arr2 = [1, 2, 3].fill(4, 1, 2);   					// [1, 4, 3]
+		var arr3 = [1, 2, 3].fill(4, 3, 3);   					// [1, 2, 3]
+		var arr4 = [1, 2, 3].fill();           					// [undefined, undefined, undefined]
+		var arr5 = [1, 2, 3].fill(4, 1, 1);    					// [1, 2, 3]
+		var arr6 = [1, 2, 3].fill(4, 1, 'b');  					// [1, 2, 3]
+		var arr7 = [1, 2, 3].fill(4, 'a', 3);  					// [4, 4, 4]
+		var arr8 = [1, 2, 3].fill(4, 'a', 'b');					// [1, 2, 3]
+		var arr9 = [1, 2, 3].fill(4, NaN, NaN);					// [1, 2, 3]
+		var arr10 = [1, 2, 3].fill(4, null, null); 				// [1, 2, 3]
+		var arr11 = [1, 2, 3].fill(4, undefined, undefined); 	// [4, 4, 4]
+		var arr12 = [1, 2, 3].fill(4, undefined, 2);			// [4, 4, 2]
+		var arr13 = [1, 2, 3].fill(4, 1, undefined);            // [1, 4, 4]
+		// NaN，null，非数，这些情况没有变化
+		// undefined 可以看作数字0对待
+
+		const newObj = Array.prototype.fill.call({length:3}, 4); // {0: 4, 1: 4, 2: 4,length:3}
+
+
+		// 12.2 Array.prototype.find()
+		// find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
+		var arr14 = [5, 12, 6, 120, 33];
+		const arr15 = arr14.find(el => el > 6);
+
+		const arr16 = arr14.find(function (item) {
+			return item > 6
+		});
+		console.log(arr16)
+
+
+
+	</script>
+</body>
+</html>
