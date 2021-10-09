@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>	
+	<script type="text/javascript">
+		// 函数是JS的一等公民
+		// 所谓一等公民，指的是函数与其他数据类型一样，处于平等地位，可以赋值给其他变量，也可以作为参数，传入另一个函数，或者作为别的函数的返回值
+
+		// sort
+		var arr = [22, 23, 11, 1, 46, 3];
+		arr.sort (function (a, b) {
+			// a > b return 大于0
+			// a = b 等与0
+			// a < b return 小于0
+
+			return a - b;
+		})
+		console.log(arr)
+
+		// map
+		var arr1 = [1, 2, 3];
+		var arr2 = arr1.map(function (item, index, array) {
+			return item * 2;
+		})
+		console.log(arr2)
+
+		// forEach
+		var arr3 = ['22', true, 1, 99, 98];
+		arr3.forEach(function (item, index) {
+			console.log('index ' + index + ' ' + item)
+		});
+
+		
+	</script>
+</body>
+</html>

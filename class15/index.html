@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 垃圾回收机制优化
+		// 数组
+		var arr = [1, 2, 3];
+		arr = null; // 改变类型
+		arr = [];	// 重新赋值
+		arr.length = 0; // 这个最为好
+
+		// 对象
+		var obj = {};
+		for (var i = 0; i < 10; i++){
+			obj.name = 'slim'
+		};
+		obj = null;	// 对象如果已经不用了，那就立即设置为null。等待垃圾回收
+
+		// 
+		
+
+
+	</script>
+</body>
+</html>

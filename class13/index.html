@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 函数的递归调用就是指：函数调用自身
+		
+		// 1 - 100 的和
+		// for实现
+		var sum = 0,
+			n = 100;
+
+		for (var i = 1; i <= n; i++) {
+			sum += i;
+		};
+	
+		// 递归实现
+		function sumN (nu) {
+			if (nu <= 1) {
+				return nu;
+			};
+			return sumN (nu - 1) + nu;
+		};
+
+		console.log(sumN (100))
+
+		// n的阶乘
+		function nu (num) {
+			if (num == 1){
+				return 1;
+			};
+
+			return num * nu (num - 1)
+		};
+		console.log(nu (3))
+
+		// 斐波那契
+		function fibonacci (n) {
+			if (n == 1) {
+				return 1
+			};
+			if (n == 0) {
+				return 0;
+			};
+
+			return fibonacci (n - 1) + fibonacci (n - 2)
+		}
+		console.log(fibonacci (5))
+
+	</script>
+</body>
+</html>
